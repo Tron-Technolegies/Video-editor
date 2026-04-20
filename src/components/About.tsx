@@ -39,21 +39,17 @@ export default function About() {
         className="w-full md:w-1/2 relative aspect-video md:aspect-square max-h-[500px] rounded-2xl overflow-hidden group shadow-2xl shadow-accent/5 focus:outline-none"
       >
         <div className="absolute inset-0 bg-neutral-900 overflow-hidden border border-white/5 rounded-2xl">
-          <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent mix-blend-overlay z-10 pointer-events-none" />
           <motion.div
             animate={{ scale: [1, 1.05, 1], rotate: [0, 1, 0] }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-neutral-800 via-neutral-900 to-black z-0"
-          />
-        </div>
-
-        {/* Hover interaction overlay */}
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-[2px] z-20">
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="w-20 h-20 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-white flex items-center justify-center cursor-pointer hover:bg-accent hover:border-accent transition-colors duration-300"
+            className="absolute inset-0 w-full h-full"
           >
-            <Play className="w-8 h-8 ml-1" />
+            <img 
+              src="/about-workspace.png" 
+              alt="Video Editing Workspace" 
+              className="w-full h-full object-cover filter brightness-[0.9] contrast-[1.1]"
+            />
           </motion.div>
         </div>
       </motion.div>

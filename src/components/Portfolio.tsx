@@ -10,23 +10,13 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-const CATEGORIES = [
-  "All",
-  "Grading",
-  "Short Films",
-  "Cinematography",
-  "Recent Works",
-  "Edits",
-  "3D & VFX",
-  "Motion Graphics",
-  "Short Form Content",
-];
+const CATEGORIES = ["All", "Grading", "Edits", "Motion Graphics"];
 
 const PROJECTS = [
   {
     id: 1,
     title: "Thar & Fortuner",
-    category: "Grading",
+    categories: ["Grading", "Motion Graphics", "Edits"],
     type: "short",
     color: "from-blue-500/20",
     videoId: "HEzODn3dxeQ",
@@ -35,7 +25,7 @@ const PROJECTS = [
   {
     id: 2,
     title: "Dubai",
-    category: "3D & VFX",
+    categories: ["Motion Graphics", "Grading", "Edits"],
     type: "tall",
     color: "from-purple-500/20",
     videoId: "x4E2qbwgvoo",
@@ -44,7 +34,7 @@ const PROJECTS = [
   {
     id: 3,
     title: "Dubai Cars",
-    category: "Cinematography",
+    categories: ["Cinematography", "Edits"],
     type: "square",
     color: "from-emerald-500/20",
     videoId: "fHg_73Fnjy4",
@@ -53,7 +43,7 @@ const PROJECTS = [
   {
     id: 4,
     title: "Dubai Cars 2",
-    category: "Edits",
+    categories: ["Edits"],
     type: "short",
     color: "from-rose-500/20",
     videoId: "6tI2Zaq8h-k",
@@ -62,7 +52,7 @@ const PROJECTS = [
   {
     id: 5,
     title: "Cars",
-    category: "Motion Graphics",
+    categories: ["Motion Graphics", "Grading", "Edits"],
     type: "tall",
     color: "from-amber-500/20",
     videoId: "5t_LWrmA31Q",
@@ -71,7 +61,7 @@ const PROJECTS = [
   {
     id: 6,
     title: "Karate",
-    category: "Short Form Content",
+    categories: ["Short Form Content", "Edits"],
     type: "tall",
     color: "from-cyan-500/20",
     videoId: "RgaLlJWw-DQ",
@@ -80,7 +70,7 @@ const PROJECTS = [
   {
     id: 7,
     title: "Arabian Thattukada",
-    category: "Short Films",
+    categories: ["Motion Graphics", "Edits"],
     type: "square",
     color: "from-red-500/20",
     videoId: "jusZLX6xt4o",
@@ -89,7 +79,7 @@ const PROJECTS = [
   {
     id: 8,
     title: "Dubai 2",
-    category: "Recent Works",
+    categories: ["Recent Works", "Edits"],
     type: "short",
     color: "from-accent/20",
     videoId: "GHDFf99drC4",
@@ -104,7 +94,7 @@ export default function Portfolio() {
   const filteredProjects =
     activeCategory === "All"
       ? PROJECTS
-      : PROJECTS.filter((p) => p.category === activeCategory);
+      : PROJECTS.filter((p) => p.categories.includes(activeCategory));
 
   return (
     <section
@@ -166,7 +156,8 @@ export default function Portfolio() {
                   alt={project.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = `https://i3.ytimg.com/vi/${project.videoId}/hqdefault.jpg`;
+                    (e.target as HTMLImageElement).src =
+                      `https://i3.ytimg.com/vi/${project.videoId}/hqdefault.jpg`;
                   }}
                 />
               )}
@@ -177,19 +168,18 @@ export default function Portfolio() {
                 )}
               />
 
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
                 <motion.div
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
-                  className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                  className="transition-transform duration-300 transform origin-bottom-left group-hover:scale-[1.03]"
                 >
-                  <span className="text-accent text-xs font-bold tracking-wider uppercase mb-2 block">
-                    {project.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-md">
                     {project.title}
                   </h3>
-                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-300 group-hover:scale-110 shadow-lg">
                     <Play className="w-5 h-5 text-white ml-1" />
                   </div>
                 </motion.div>
