@@ -25,59 +25,75 @@ const CATEGORIES = [
 const PROJECTS = [
   {
     id: 1,
-    title: "Neon Nights",
+    title: "Thar & Fortuner",
     category: "Grading",
     type: "short",
     color: "from-blue-500/20",
+    videoId: "HEzODn3dxeQ",
+    isShort: true,
   },
   {
     id: 2,
-    title: "The Void",
+    title: "Dubai",
     category: "3D & VFX",
     type: "tall",
     color: "from-purple-500/20",
+    videoId: "x4E2qbwgvoo",
+    isShort: true,
   },
   {
     id: 3,
-    title: "Urban Echo",
+    title: "Dubai Cars",
     category: "Cinematography",
     type: "square",
     color: "from-emerald-500/20",
+    videoId: "fHg_73Fnjy4",
+    isShort: true,
   },
   {
     id: 4,
-    title: "Speed Run",
+    title: "Dubai Cars 2",
     category: "Edits",
     type: "short",
     color: "from-rose-500/20",
+    videoId: "6tI2Zaq8h-k",
+    isShort: true,
   },
   {
     id: 5,
-    title: "Abstract Flow",
+    title: "Cars",
     category: "Motion Graphics",
     type: "tall",
     color: "from-amber-500/20",
+    videoId: "5t_LWrmA31Q",
+    isShort: true,
   },
   {
     id: 6,
-    title: "Reels Pack",
+    title: "Karate",
     category: "Short Form Content",
     type: "tall",
     color: "from-cyan-500/20",
+    videoId: "RgaLlJWw-DQ",
+    isShort: true,
   },
   {
     id: 7,
-    title: "Lost Signal",
+    title: "Arabian Thattukada",
     category: "Short Films",
     type: "square",
     color: "from-red-500/20",
+    videoId: "jusZLX6xt4o",
+    isShort: true,
   },
   {
     id: 8,
-    title: "Commercial Reel",
+    title: "Dubai 2",
     category: "Recent Works",
     type: "short",
     color: "from-accent/20",
+    videoId: "GHDFf99drC4",
+    isShort: false,
   },
 ];
 
@@ -143,9 +159,20 @@ export default function Portfolio() {
                     : "aspect-square",
               )}
             >
+              <div className="absolute inset-0 bg-neutral-900" />
+              {project.videoId && (
+                <img
+                  src={`https://i3.ytimg.com/vi/${project.videoId}/maxresdefault.jpg`}
+                  alt={project.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = `https://i3.ytimg.com/vi/${project.videoId}/hqdefault.jpg`;
+                  }}
+                />
+              )}
               <div
                 className={cn(
-                  "absolute inset-0 bg-gradient-to-br to-neutral-900",
+                  "absolute inset-0 bg-gradient-to-br to-neutral-900/90 group-hover:to-neutral-900/40 transition-colors duration-500",
                   project.color,
                 )}
               />
@@ -191,22 +218,34 @@ export default function Portfolio() {
               <X className="w-6 h-6" />
             </motion.button>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.9 }}
-              className="w-full max-w-6xl aspect-video bg-neutral-900 rounded-2xl border border-white/10 overflow-hidden flex flex-col items-center justify-center relative shadow-[0_0_100px_rgba(176,38,255,0.15)]"
-            >
-              <Play className="w-20 h-20 text-white/50 mb-4" />
-              <div className="text-center">
-                <p className="text-white text-2xl font-light">
-                  Custom Video Player Placeholder
-                </p>
-                <p className="text-accent/60 text-sm mt-2 uppercase tracking-widest">
-                  Ready for YouTube / IG Integration
-                </p>
-              </div>
-            </motion.div>
+            {(() => {
+              const project = PROJECTS.find((p) => p.id === selectedVideo);
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                  className={cn(
+                    "w-full bg-neutral-900 rounded-2xl border border-white/10 overflow-hidden flex flex-col items-center justify-center relative shadow-[0_0_100px_rgba(176,38,255,0.15)]",
+                    project?.isShort
+                      ? "max-w-[400px] aspect-[9/16]"
+                      : "max-w-6xl aspect-video",
+                  )}
+                >
+                  {project && (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${project.videoId}?autoplay=1`}
+                      title={project.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full border-0"
+                    />
+                  )}
+                </motion.div>
+              );
+            })()}
           </motion.div>
         )}
       </AnimatePresence>

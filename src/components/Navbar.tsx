@@ -6,6 +6,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { useLenis } from "@studio-freight/react-lenis";
 import { X, Menu } from "lucide-react";
+import { handleChatClick } from "../../utils/whatsapp";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -31,7 +32,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleLinkClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
     if (lenis) {
@@ -53,8 +57,11 @@ export default function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
-          <div className="text-white font-bold text-xl tracking-widest uppercase cursor-pointer relative z-[60]" onClick={(e) => handleLinkClick(e as any, "#home")}>
-            EDITOR<span className="text-accent">X</span>
+          <div
+            className="text-white font-bold text-xl tracking-widest uppercase cursor-pointer relative z-[60]"
+            onClick={(e) => handleLinkClick(e as any, "#home")}
+          >
+            <span className="text-accent">P</span>ortfolio
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -70,18 +77,23 @@ export default function Navbar() {
             ))}
           </nav>
 
-          <button 
-            onClick={(e) => handleLinkClick(e as any, "#contact")}
-            className="hidden md:flex px-6 py-2 bg-white/10 hover:bg-accent hover:border-accent hover:text-white text-white text-sm font-medium rounded-full transition-all duration-300 border border-white/10 items-center justify-center">
+          <button
+            onClick={(e) => handleChatClick()}
+            className="hidden md:flex px-6 py-2 bg-white/10 hover:bg-accent hover:border-accent hover:text-white text-white text-sm font-medium rounded-full transition-all duration-300 border border-white/10 items-center justify-center"
+          >
             Hire Me
           </button>
 
           {/* Mobile menu toggle button */}
-          <button 
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-white hover:text-accent transition-colors relative z-[60]"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </motion.header>
@@ -107,9 +119,10 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <button 
+              <button
                 onClick={(e) => handleLinkClick(e as any, "#contact")}
-                className="mt-6 px-8 py-3 bg-white/10 border border-white/20 text-white text-lg font-bold uppercase tracking-widest rounded-full hover:bg-accent hover:border-accent transition-all duration-300">
+                className="mt-6 px-8 py-3 bg-white/10 border border-white/20 text-white text-lg font-bold uppercase tracking-widest rounded-full hover:bg-accent hover:border-accent transition-all duration-300"
+              >
                 Hire Me
               </button>
             </nav>

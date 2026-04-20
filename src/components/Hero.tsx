@@ -22,7 +22,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-accent font-medium uppercase tracking-[0.3em] text-xs md:text-sm mb-6 bg-white/5 backdrop-blur-md border border-white/10 px-6 py-2 rounded-full"
         >
-          Hi im John Doe
+          Hi, I’m Noufan Bin Jafer
         </motion.p>
 
         <motion.h1
@@ -31,7 +31,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.4 }}
           className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 drop-shadow-2xl"
         >
-          Crafting Visual <br className="hidden md:block" /> Stories
+          Crafting Engaging Visual <br className="hidden md:block" /> Stories
         </motion.h1>
 
         <motion.p
@@ -40,8 +40,9 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.8 }}
           className="max-w-xl text-neutral-400 text-lg md:text-xl font-light"
         >
-          Specializing in bringing narratives to life through rhythmic edits,
-          dynamic VFX, and cinematic color grading.
+          Video editor specializing in social media content and cinematic edits.
+          I turn raw footage into high-quality videos that capture attention and
+          keep viewers engaged.
         </motion.p>
       </div>
 

@@ -21,11 +21,13 @@ export default function About() {
         </h2>
         <div className="h-1 w-20 bg-accent rounded-full mb-4 md:mb-0" />
         <p className="text-neutral-400 text-lg md:text-xl leading-relaxed font-light">
-          I am a visual storyteller and video editor dedicated to turning raw
-          footage into cinematic experiences. With a sharp eye for detail and a
-          passion for rhythm, I specialize in bringing narratives to life across
-          multiple formats—from high-end commercial edits to immersive 3D/VFX
-          compositions.
+          I’m a video editor focused on creating engaging and high-quality
+          content for social media and digital platforms. I have experience
+          working on both client and personal projects, including a promotional
+          video for a karate training center. I specialize in clean cuts, smooth
+          transitions, and storytelling that keeps viewers engaged. I’m
+          constantly improving my skills and looking to create impactful visual
+          content
         </p>
       </motion.div>
 
